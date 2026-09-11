@@ -1,0 +1,38 @@
+{
+  "permissions": {
+    "deny": [
+      "DesignSync",
+      "RemoteTrigger",
+      "NotebookEdit",
+      "ScheduleWakeup",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "AskUserQuestion"
+    ]
+  },
+  "model": "claude-fable-5-1[1m]",
+  "disableClaudeAiConnectors": true,
+  "disableBundledSkills": true,
+  "disableWorkflows": true,
+  "disableArtifact": true,
+  "effortLevel": "high",
+  "autoMemoryEnabled": false,
+  "theme": "dark",
+  "remoteControlAtStartup": true,
+  "inputNeededNotifEnabled": true,
+  "agentPushNotifEnabled": true,
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "EnterWorktree",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"$HOME/.claude/hooks/block-subagent-enterworktree.py\""
+          }
+        ]
+      }
+    ]
+  }
+}
