@@ -47,7 +47,7 @@ When the user uses a term that conflicts with the existing language in `CONTEXT.
 
 ### Sharpen fuzzy language
 
-When the user uses vague or overloaded terms, propose a precise canonical term. "You're saying 'account' — do you mean the Customer or the User? Those are different things."
+When the user uses a vague or overloaded term, ask which concept they mean. "You're saying 'account' — do you mean the Customer or the User? Those are different things."
 
 ### Discuss concrete scenarios
 
@@ -57,9 +57,9 @@ When domain relationships are being discussed, stress-test them with specific sc
 
 When the user states how something works, check whether the code agrees. If you find a contradiction, surface it: "Your code cancels entire Orders, but you just said partial cancellation is possible — which is right?"
 
-### Propose CONTEXT.md text inline
+### Record the user's words
 
-When a term is resolved, propose the exact `CONTEXT.md` entry right there, and write it only after the user approves that exact text. `CONTEXT.md` and the ADRs are the user's; no agent edits them without that approval. Don't batch these up — propose them as they happen. Use the format in [CONTEXT-FORMAT.md](./CONTEXT-FORMAT.md).
+`CONTEXT.md` aligns the agent with words already in the user's head. When the user resolves a term, offer to record it in their words, and write it only after they approve the exact text. An entry names a concept the user already uses; a term an agent coined stays out. Use the format in [CONTEXT-FORMAT.md](./CONTEXT-FORMAT.md).
 
 `CONTEXT.md` should be totally devoid of implementation details. Do not treat `CONTEXT.md` as a spec, a scratch pad, or a repository for implementation decisions. It is a glossary and nothing else.
 

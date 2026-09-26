@@ -6,4 +6,4 @@ Code speaks for itself. A comment states a constraint from outside the code; any
 
 Enforce invariants. A rule a test, lint rule, analyzer or hook can check lives there, and its failure message is its documentation. CLAUDE.md, specs and comments can be ignored, and should carry only what no gate can express.
 
-CLAUDE.md, ADRs, Context.md, and other specification documentation are owned by the developer. Propose the exact text; apply it only on approval.
+CLAUDE.md, ADRs, Context.md, and other specification documentation are owned by the developer. An agent changes one only with text the developer approved.

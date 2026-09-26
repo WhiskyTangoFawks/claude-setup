@@ -64,7 +64,7 @@ Show counts and a one-line summary per item. Let the maintainer pick.
 
 3. **Verify the claim.** Before any grilling, check that the claim holds up. For a bug, reproduce it from the reporter's steps. For a PR, confirm the diff does what it claims — check it out, run the relevant tests or commands. Report what happened: confirmed (with code path), failed, or insufficient detail (a strong `needs-info` signal). A confirmed verification makes a much stronger agent brief.
 
-4. **Resolve open decisions.** Design and scope calls are triage work — the session is the maintainer's live design bandwidth, so spend it here. Run the `/grilling` and `/domain-modeling` skills together — grill the request into shape a round of questions at a time, sharpening domain terms and updating `CONTEXT.md`/ADRs inline as decisions land. Done when every decision the agent brief needs is made — the issue leaves the session `ready-for-agent` unless its *execution* needs a human.
+4. **Resolve open decisions.** Design and scope calls are triage work — the session is the maintainer's live design bandwidth, so spend it here. Run the `/grilling` and `/domain-modeling` skills together — grill the request into shape a round of questions at a time, sharpening domain terms, with any `CONTEXT.md` or ADR change written only in text the maintainer approved. Done when every decision the agent brief needs is made — the issue leaves the session `ready-for-agent` unless its *execution* needs a human.
 
 5. **Apply the outcome:**
    - `ready-for-agent` — post an agent brief comment ([AGENT-BRIEF.md](AGENT-BRIEF.md)).
