@@ -3,31 +3,36 @@
 ## Structure
 
 ```md
-# {Context Name}
-
 {One or two sentence description of what this context is and why it exists.}
 
-## Language
+# Order
+A stack of items that resolve conflicts by override. Mod order and plugin order are its two kinds.
+Avoid: priority
 
-**Order**:
-{A one or two sentence description of the term}
-_Avoid_: Purchase, transaction
+## Mod order
+The order of mods, held in `modlist.txt`. It resolves files.
+Avoid: mod priority, mod load order
 
-**Invoice**:
+## Plugin order
+The order of plugins, held in `plugins.txt`. It resolves records.
+Avoid: plugin load order
+
+# Invoice
 A request for payment sent to a customer after delivery.
-_Avoid_: Bill, payment request
-
-**Customer**:
-A person or organization that places orders.
-_Avoid_: Client, buyer, account
+Avoid: bill, payment request
 ```
+
+Two heading levels. `#` is a term. `##` is a kind of the `#` term above it, and its definition starts with that term: a [parent] that [difference]. Where the language allows, a kind's heading also contains its parent's name (Mod order, Patch plugin, File conflict). A `##` needs a parent that is itself a term in the file. A term with two parents stays a `#`, and its definition names both. The heading is the canonical spelling of the term, so `grep -E '^#+ Term$'` finds it. Plain text before the first heading says what the file is.
 
 ## Rules
 
-- **Be opinionated.** When multiple words exist for the same concept, pick the best one and list the others under `_Avoid_`.
-- **Keep definitions tight.** One or two sentences max. Define what it IS, not what it does.
-- **Only include terms specific to this project's context.** General programming concepts (timeouts, error types, utility patterns) don't belong even if the project uses them extensively. Before adding a term, ask: is this a concept unique to this context, or a general programming concept? Only the former belongs.
-- **Group terms under subheadings** when natural clusters emerge. If all terms belong to a single cohesive area, a flat list is fine.
+- The body of a term is its definition, wrapped at 100 columns, then an optional `Avoid:` line. One blank line between terms. No bold.
+- Related terms sit next to each other, and a term is defined before it is used. Adjacency is the only clustering.
+- Be opinionated. When multiple words exist for the same concept, pick the best one and list the others on the `Avoid:` line.
+- Keep definitions tight. One or two sentences max. Define what it IS, not what it does. A rule that code, a test or an ADR states stays there.
+- A term earns an entry only if a model trained on general text would misjudge it: a domain word it knows only loosely, an ambiguity trap, or a project coinage on a generic word. General programming concepts and architecture names do not belong. A coinage on a generic word is a smell: rename it, or make it a command.
+- A kind gets its own heading when it has its own `Avoid:` words or facts beyond one clause. A kind that is only a state of its parent stays a sentence in the parent.
+- `Avoid:` lists words someone still says. When a word has a legitimate use elsewhere, scope it in brackets: `Avoid: patch (a kind of plugin)`.
 
 ## Single vs multi-context repos
 

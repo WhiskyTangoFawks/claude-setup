@@ -6,7 +6,7 @@ disable-model-invocation: true
 
 # Orchestrate
 
-Your goal is the delivery of the PRD. The executor's goal is its ticket. Deferral belongs to the user. Work inside your goal gets done in this run, and work outside it is the user's to rule on.
+Your goal is the delivery of the PRD. The executor's goal is its ticket. Deferral belongs to the user. Work inside your goal gets done in this run, and work outside it is the user's to rule on. A defect the run finds is inside your goal.
 
 Read tickets and reports, avoid reading source. Every file you open is context you will not have later in the run- spend your context wisely.
 
@@ -20,7 +20,7 @@ The run never waits, but it can ask. A ping is a question with a default, and th
 
 The stack is a PRD's `ready-for-agent` sub-issues with their blocking edges. Edges decide what can start. File surface decides what can run beside what.
 
-Read each ticket once and name the files it touches, and what tier model it needs based on the complexity. Cut the stack into lanes so that tickets sharing a file share a lane. Work is serial within a lane and parallel across lanes. Run 3 lanes at most.
+Read each ticket once, with its comments and its PRD's comments, and name the files it touches, and what tier model it needs based on the complexity. Cut the stack into lanes so that tickets sharing a file share a lane. Work is serial within a lane and parallel across lanes. Run 3 lanes at most.
 
 **Criterion:** every ticket sits in one lane, and no two lanes name the same file.
 
@@ -34,7 +34,7 @@ For each ticket, assign yourself and start one fresh `general-purpose` agent wit
 
 Keep the agentId, because `SendMessage` carries every later exchange. Within a minute, confirm the agent's transcript is still growing: one that stopped at its first tool call is dead, and a message to a dead agent is queued, never delivered, so respawn rather than wait. The prompt is `BRIEF.md` verbatim, followed by the fillings it needs:
 
-- the ticket number and its full text
+- the ticket number, its full text, and every comment on the ticket and on its PRD, oldest first (`gh issue view <n> --comments`). A ruling posted as a comment amends the body, so the executor builds to the latest word, not the first.
 - **landed since**, the list of what this run has already merged only if it changes the ticket's ground
 - the rulings from step 2
 - the branch name to create; the worktree is the agent's working directory
@@ -57,24 +57,25 @@ When an executor reports committed, work through these in order.
    - For a new cross-boundary import, name what it drags with it.
    - When a named surface was wired, retired or renamed, grep `CLAUDE.md`, the specs and adjacent doc comments for present-tense claims about it.
 6. Run `git -C <checkout-absolute-path> merge --no-ff <branch>`.
-7. Fold the outcome into the spec, editing at the checkout's absolute path.
+7. Never edit the spec. `docs/architecture/`, the ADRs, `CONTEXT.md` and every `CLAUDE.md` are the user's source of truth, and no agent modifies them under any condition without the user's explicit approval of the exact text. Where the outcome leaves the spec out of step, such as a status that should flip, write the exact before/after text for the drain.
 8. Close the ticket. Anything that needs human eyes is noted for the drain, since verification happens at the PRD.
 9. Remove the worktree (`git worktree remove .claude/worktrees/<name>`) and delete the branch.
 10. Tell the other executor what landed and the new baseline test count, in one line.
-11. Sort the report's **findings** against the PRD. Each finding takes one of three routes:
-   - It serves the PRD and sits inside the reporting executor's surface: message that executor the finding along with landed-since and rulings, and it lands with the ticket.
-   - It serves the PRD and sits outside that surface: start a fresh executor with a brief you write.
-   - It does not serve the PRD: hold it for the drain.
+11. Sort the report's **findings**. A defect the run finds is the run's to fix, whatever ticket or PRD it sits under and however old it is. Each finding takes one of four routes:
+   - A defect, or a finding that serves the PRD, inside the reporting executor's surface: message that executor the finding along with landed-since and rulings, and it lands with the ticket.
+   - A defect, or a finding that serves the PRD, outside that surface: start a fresh executor with a brief you write.
+   - A defect whose fix needs an architecture or specification change (`docs/architecture/`, an ADR, `CONTEXT.md`, a `CLAUDE.md`): hold it for the drain with the exact before/after text proposed. The user owns those, and no agent edits them without the user's approval of the exact text.
+   - Anything else: hold it for the drain.
 
    A dispatched finding gets no ticket and no comment.
 
 The tracker is yours to read, assign, close and comment on. Tickets come from the user.
 
-**Criterion:** merged, spec folded, ticket closed, worktree gone, `main` clean, other lanes told, findings sorted.
+**Criterion:** merged, spec text proposed where one is needed, ticket closed, worktree gone, `main` clean, other lanes told, findings sorted.
 
 ## 5. Drain
 
-The run ends when the PRD is achieved. Post one comment on the PRD. It lists what landed, both ticketed and not, what needs human eyes and why, what parked and the question each park waits on, what was never dispatched, and every held finding for the user's ruling. The PRD is the user's review surface.
+The run ends when the PRD is achieved. Post one comment on the PRD. It lists what landed, both ticketed and not, what needs human eyes and why, what parked and the question each park waits on, what was never dispatched, every held finding for the user's ruling, and every proposed spec edit as exact before/after text. The PRD is the user's review surface.
 
 **Criterion:** the comment is posted, no worktree remains, and `main` is clean.
 

@@ -24,7 +24,7 @@ Check against ASD-STE100 as the target, not a pass/fail gate — see the Prose s
 - Scratchpad drift — an entry describes an implementation detail, a "how it works," or a decision instead of a glossary term. → belongs in an ADR or nowhere; cut it.
 - General-concept bloat — a term is a general programming concept (timeout, retry, DTO) with nothing specific to this domain. → cut it.
 - Restated code — the entry repeats what the type or field name already says, with no disambiguating detail. → cut it.
-- Fence-sitting — two or more terms are listed for the same concept with none marked canonical. → pick one, move the rest to `_Avoid_`.
+- Fence-sitting — two or more terms are listed for the same concept with none marked canonical. → pick one, move the rest to `Avoid:`.
 
 ## ADRs
 
