@@ -11,6 +11,10 @@ Check against ASD-STE100 as the target, not a pass/fail gate — see the Prose s
 - Synonym drift — the same concept is named with two or more different words across the doc. → pick one term, use it everywhere.
 - Complex vocabulary — a rare or long word stands in for a common one that says the same thing. → replace with the plain word.
 
+## Across documents
+
+- Restated fact — a fact the diff adds already lives in another document, changed or not. Two copies drift apart. → grep the repo for each fact the diff adds; keep it in the document that owns it and point at it from the rest.
+
 ## Diagrams
 
 - Diagram-shaped prose — a paragraph makes the reader assemble a branching or multi-actor relationship in their head. → suggest a Mermaid diagram instead.
@@ -33,6 +37,7 @@ Check against ASD-STE100 as the target, not a pass/fail gate — see the Prose s
 - What not why — records the decision but not the reasoning, so a future reader can't tell if it still applies. → flag as incomplete.
 - Rewritten history — an `accepted` ADR's decision text was edited in place instead of superseded (see [ADR-STANDARDS.md](./ADR-STANDARDS.md)). → should be a new ADR with the old one marked `superseded by`.
 - Not a decision — the entry documents a process, runbook, or implementation detail rather than an architectural decision. → doesn't belong in `docs/adr/`; move it or cut it.
+- Implementation detail in a sentence — a sentence says how the decision is carried out: a named library, an OS behaviour, a trigger list, an example. It goes stale when the code changes and the decision does not. → test every sentence: delete each one whose removal leaves the decision unchanged. Move a tactic the reader needs to the spec or the commit message.
 - Bloated — the required paragraph runs well past the 1-3 sentences the format calls for. → find the strategic principle and restate it; a decision that doesn't fit a paragraph isn't crisp yet.
 - Bad File Name — The filename and title should match. They should be a shortest possible phrase that convers the decision. The list of files is the index an agent searches to determine if it needs to read an ADR. Filenames are load bearing.
 
