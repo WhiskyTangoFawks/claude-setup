@@ -1,6 +1,6 @@
 # Documentation Review Checklist
 
-Anti-patterns to check for when a diff touches documentation. Each reads *what it is* → *why it fails the bar*, the same shape as a code smell — a judgement call, not a hard violation.
+Anti-patterns to check for when a diff touches documentation. Each reads what it is → why it fails the bar, the same shape as a code smell — a judgement call, not a hard violation.
 
 ## Prose
 
@@ -10,6 +10,7 @@ Check against ASD-STE100 as the target, not a pass/fail gate — see the Prose s
 - Passive voice — the sentence hides the actor ("the config is loaded" instead of "the app loads the config"). → rewrite active.
 - Synonym drift — the same concept is named with two or more different words across the doc. → pick one term, use it everywhere.
 - Complex vocabulary — a rare or long word stands in for a common one that says the same thing. → replace with the plain word.
+- Decoration — bold or italics mark emphasis. → give the text its own heading, line or sentence; delete the markers.
 
 ## Across documents
 
@@ -33,13 +34,23 @@ Check against ASD-STE100 as the target, not a pass/fail gate — see the Prose s
 ## ADRs
 
 - Doesn't clear the bar — check the decision against the three-part test in [ADR-FORMAT.md](../domain-modeling/ADR-FORMAT.md#when-to-offer-an-adr) (hard to reverse, surprising, real trade-off). If any leg fails, question whether the ADR should exist.
-- Template bloat — Considered Options or Consequences is filled with generic filler rather than content that couldn't be inferred. → cut the section.
+- Template bloat — Alternatives rejected or Consequences is filled with generic filler rather than content that couldn't be inferred. → cut the section.
 - What not why — records the decision but not the reasoning, so a future reader can't tell if it still applies. → flag as incomplete.
 - Rewritten history — an `accepted` ADR's decision text was edited in place instead of superseded (see [ADR-STANDARDS.md](./ADR-STANDARDS.md)). → should be a new ADR with the old one marked `superseded by`.
 - Not a decision — the entry documents a process, runbook, or implementation detail rather than an architectural decision. → doesn't belong in `docs/adr/`; move it or cut it.
 - Implementation detail in a sentence — a sentence says how the decision is carried out: a named library, an OS behaviour, a trigger list, an example. It goes stale when the code changes and the decision does not. → test every sentence: delete each one whose removal leaves the decision unchanged. Move a tactic the reader needs to the spec or the commit message.
 - Bloated — the required paragraph runs well past the 1-3 sentences the format calls for. → find the strategic principle and restate it; a decision that doesn't fit a paragraph isn't crisp yet.
 - Bad File Name — The filename and title should match. They should be a shortest possible phrase that convers the decision. The list of files is the index an agent searches to determine if it needs to read an ADR. Filenames are load bearing.
+
+## Specs
+
+Check every sentence against the two tests in [SPEC-STANDARDS.md](./SPEC-STANDARDS.md).
+
+- Mechanism — a sentence names a component, file, key, algorithm or internal order the user never sees. → delete; the tests hold it.
+- Restated decision — a sentence repeats what a principle, an ADR or the reference tool decides. → delete, and cite the source where the story needs it.
+- Retold diagram — prose walks a flow the diagram already draws. → delete the prose.
+- Second home — one behaviour is stated in two spec files. → keep it in the surface where the user meets it, and point there from the rest.
+- Inserted story — a new story sits mid-list and renumbers the stories after it. → append it to the end of the list.
 
 ## READMEs
 

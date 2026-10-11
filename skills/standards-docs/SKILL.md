@@ -1,6 +1,6 @@
 ---
 name: standards-docs
-description: Documentation standards for READMEs, code comments, ADRs, and CONTEXT.md glossaries. Required to read before writing, editing, or reviewing documentation.
+description: Read before writing, editing or reviewing any markdown file (spec, ADR, README, CONTEXT.md, CLAUDE.md, skill), even to paste wording already approved.
 ---
 
 # Documentation Standards
@@ -22,6 +22,14 @@ The sentence-level rules (short, active, one idea, one term) apply everywhere pr
 
 This matters more for an agent than for a human reader. A short, single-clause, active-voice sentence has one parse; a sentence with subordinate clauses or passive voice invites the wrong one. One term per concept is the same discipline CONTEXT.md already applies to nouns ("be opinionated"), applied to prose generally.
 
+Write each paragraph, list item and table row as one line; the reader's editor wraps it. Never reflow existing lines by hand: a line break inside a paragraph costs tokens on every read, and every reflow is diff noise.
+
+## Structure
+
+Structure carries emphasis. A heading names what a block is about, a list holds parallel items, and a term's own heading makes it greppable. Text that must stand out gets its own heading, line or sentence.
+
+No bold and no italics. The reader reads the raw file, where the markers are noise that costs tokens and says nothing the structure does not.
+
 ## Diagrams
 
 Reach for a diagram when the content is graph-shaped: branches, concurrent actors, states with more than one valid transition, or relationships between more than two entities. A linear procedure stays a list — a diagram for a sequence with no branching is decoration, not communication.
@@ -39,6 +47,7 @@ Do not document knowledge that is cheaply rederived from the code- this creates 
 
 - README — [README-STANDARDS.md](./README-STANDARDS.md)
 - ADRs — [ADR-STANDARDS.md](./ADR-STANDARDS.md)
+- Specs — [SPEC-STANDARDS.md](./SPEC-STANDARDS.md)
 - CONTEXT.md glossaries — [CONTEXT-FORMAT.md](../domain-modeling/CONTEXT-FORMAT.md) (domain-modeling skill)
 
 # Reviewing documentation
