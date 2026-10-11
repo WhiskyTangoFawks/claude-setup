@@ -11,7 +11,7 @@
       "AskUserQuestion"
     ]
   },
-  "model": "opus[1m]",
+  "model": "opus",
   "disableClaudeAiConnectors": true,
   "disableBundledSkills": true,
   "hooks": {
