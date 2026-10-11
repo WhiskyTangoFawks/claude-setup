@@ -7,20 +7,20 @@ Create the `docs/adr/` directory lazily — only when the first ADR is needed.
 ## Template
 
 ```md
-# {Short title of the decision}
+# {The decision, as the shortest phrase that states it}
 
-{1-3 sentences: what's the context, what did we decide, and why.}
+{1-3 sentences: the forces, the decision, and why. Name the principle it applies.}
 ```
 
-That's it. An ADR can be a single paragraph. The value is in recording *that* a decision was made and *why* — not in filling out sections.
+That's it. An ADR can be a single paragraph. The paragraph is the ADR's authority, and every section below it serves the paragraph. An ADR holds strategy only. A tactic, such as a mechanism, a name, a file, a test or what a view shows, belongs to the implementor, in the code and tests.
 
 ## Optional sections
 
-Only include these when they add genuine value. Most ADRs won't need them.
+Include one only when it adds genuine value. Most ADRs need neither. Never number a section's items: a line inside an ADR is never a citation.
 
-- **Status** frontmatter (`proposed | accepted | deprecated | superseded by ADR-NNNN`) — useful when decisions are revisited
-- **Considered Options** — only when the rejected alternatives are worth remembering
-- **Consequences** — only when non-obvious downstream effects need to be called out
+- **Consequences.** An effect of the decision that a reasonable reader holding only the paragraph would get wrong. Each bullet carries its reason, so it reads as the decision applied, not as a rule.
+- **Alternatives rejected.** An option a reasonable reader would propose, and why not. Often the best carrier of intent.
+- **Status** frontmatter (`proposed | accepted | deprecated | superseded by ADR-NNNN`), useful when decisions are revisited.
 
 ## Numbering
 

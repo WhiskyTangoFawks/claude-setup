@@ -7,18 +7,22 @@
 
 # Order
 A stack of items that resolve conflicts by override. Mod order and plugin order are its two kinds.
+
 Avoid: priority
 
 ## Mod order
 The order of mods, held in `modlist.txt`. It resolves files.
+
 Avoid: mod priority, mod load order
 
 ## Plugin order
 The order of plugins, held in `plugins.txt`. It resolves records.
+
 Avoid: plugin load order
 
 # Invoice
 A request for payment sent to a customer after delivery.
+
 Avoid: bill, payment request
 ```
 
@@ -26,7 +30,7 @@ Two heading levels. `#` is a term. `##` is a kind of the `#` term above it, and 
 
 ## Rules
 
-- The body of a term is its definition, wrapped at 100 columns, then an optional `Avoid:` line. One blank line between terms. No bold.
+- The body of a term is its definition on one line, then a blank line and an optional `Avoid:` line. One blank line between terms. No bold.
 - Related terms sit next to each other, and a term is defined before it is used. Adjacency is the only clustering.
 - Be opinionated. When multiple words exist for the same concept, pick the best one and list the others on the `Avoid:` line.
 - Keep definitions tight. One or two sentences max. Define what it IS, not what it does. A rule that code, a test or an ADR states stays there.
